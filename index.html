@@ -112,12 +112,12 @@ header{position:sticky;top:0;z-index:20;background:rgba(251,249,244,.92);backdro
 .card:hover .ph img+img{opacity:1}
 .card .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
 .card h3{font-family:var(--sans);font-size:15px;font-weight:600;line-height:1.35;letter-spacing:0}
-.card .row{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
-.card .price{font-weight:700;font-size:18px}
-.card .go{font-size:13px;font-weight:600;color:var(--green)}
+.card .price{font-weight:700;font-size:18px;margin-top:auto}
+.card .go{display:block;text-align:center;background:var(--green);color:#fff;border-radius:999px;padding:10px 12px;font-size:14px;font-weight:600;transition:background .2s}
+.card:hover .go{background:var(--green-dark)}
 .empty{color:var(--muted);padding:30px 0}
 .more{text-align:center;margin-top:36px}
-@media(max-width:700px){.card .body{padding:10px 12px 12px}.card h3{font-size:13.5px}.card .price{font-size:16px}.card .go{display:none}}
+@media(max-width:700px){.card .body{padding:10px 12px 12px}.card h3{font-size:13.5px}.card .price{font-size:16px}.card .go{padding:9px 8px;font-size:13px}}
 
 /* categories */
 .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
@@ -178,6 +178,19 @@ header{position:sticky;top:0;z-index:20;background:rgba(251,249,244,.92);backdro
 .contacts .hero-cta{margin-top:28px}
 @media(max-width:860px){.contacts{grid-template-columns:1fr;padding:32px 22px}}
 
+/* order dialog */
+.order{margin:auto;border:0;border-radius:24px;padding:0;width:min(440px,calc(100% - 32px));max-height:calc(100% - 32px);color:var(--ink);background:#fff;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+.order::backdrop{background:rgba(20,28,22,.55)}
+.order .top{display:flex;gap:14px;padding:20px 20px 0;align-items:center}
+.order .top img{width:84px;height:112px;object-fit:cover;border-radius:12px;flex:none}
+.order h3{font-family:var(--sans);font-size:17px;font-weight:700;line-height:1.3;letter-spacing:0}
+.order .p{font-size:20px;font-weight:700;margin-top:6px}
+.order .opts{display:grid;gap:10px;padding:20px}
+.order .opts .btn{width:100%}
+.order .hint{font-size:13px;color:var(--muted);padding:0 20px;margin-top:-6px}
+.order .x{position:absolute;top:10px;right:12px;border:0;background:none;font-size:28px;line-height:1;cursor:pointer;color:var(--muted);padding:4px}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;z-index:60;opacity:0;transition:opacity .25s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1}
 footer{padding:36px 0 110px;color:var(--muted);font-size:14px}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
@@ -216,7 +229,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <p>Авторские букеты из свежих и фермерских сезонных цветов. Доставим по Москве за 1 час или соберём к вашему приходу в студии в Некрасовке.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#catalog">Выбрать букет</a>
-        <a class="btn btn-ghost" href="https://t.me/+79689682744" target="_blank" rel="noopener">Собрать свой в Telegram</a>
+        <a class="btn btn-ghost" href="https://t.me/+79689682744">Собрать свой в Telegram</a>
       </div>
       <div class="chips">
         <span class="chip">🚚 Доставка за 1 час</span>
@@ -252,7 +265,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="tabs" id="tabs" role="group" aria-label="Категория"></div>
     <div class="prices" id="prices" role="group" aria-label="Цена"></div>
     <div class="grid" id="grid" style="margin-top:26px"></div>
-    <div class="more"><a class="btn btn-ghost" href="https://teplica.posiflora.com/teplitsa_moscow" target="_blank" rel="noopener">Весь каталог: 100+ позиций</a></div>
+    <div class="more"><a class="btn btn-ghost" href="https://teplica.posiflora.com/teplitsa_moscow">Весь каталог: 100+ позиций</a></div>
 
     <h3 style="font-size:34px;margin-top:64px">Популярные категории</h3>
     <div class="cats">
@@ -284,7 +297,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <p>Мы привозим разнообразные экзотические цветы и наши фермерские сезонные цветочки. С любовью и трепетом относимся к каждому заказу и готовы воплотить в жизнь любую вашу идею.</p>
       <p>Студия находится в Некрасовке, на ул. Недорубова, 28 — заходите выбрать букет вживую или просто посмотреть на цветы.</p>
       <div class="mk"><b>Мастер-классы по выходным.</b> Флористические и другие творческие мастер-классы для взрослых и детей. Расписание и запись — в Telegram.</div>
-      <div class="hero-cta" style="margin-top:26px"><a class="btn btn-primary" href="https://t.me/+79689682744" target="_blank" rel="noopener">Записаться на мастер-класс</a></div>
+      <div class="hero-cta" style="margin-top:26px"><a class="btn btn-primary" href="https://t.me/+79689682744">Записаться на мастер-класс</a></div>
     </div>
   </div>
 </section>
@@ -312,7 +325,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <div class="review"><div class="stars">★★★★★</div><p>Наконец-то не придётся ездить в центр за цветами! Очень хороший ассортимент, приятный персонал, готовый подобрать композицию, которая нравится именно мне!</p><div class="who"><b>Diana Alirzaeva</b> · Яндекс Карты</div></div>
       <div class="review"><div class="stars">★★★★★</div><p>Заглянула на минутку, а вышла счастливая и с букетом мечты. Нежные пионы, стильная упаковка, ни одной вялой веточки. Теперь это моё любимое место за цветами и настроением.</p><div class="who"><b>Алина Алдушкина</b> · Яндекс Карты</div></div>
     </div>
-    <div class="more"><a class="btn btn-ghost" href="https://yandex.ru/maps/org/202014402815/reviews/" target="_blank" rel="noopener">Все отзывы на Яндекс Картах</a></div>
+    <div class="more"><a class="btn btn-ghost" href="https://yandex.ru/maps/org/202014402815/reviews/">Все отзывы на Яндекс Картах</a></div>
   </div>
 </section>
 
@@ -324,12 +337,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <p class="lead">Соберём букет при вас, поможем с выбором упаковки и подпишем открытку.</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="tel:+79689682744">Позвонить</a>
-          <a class="btn btn-ghost" href="https://t.me/+79689682744" target="_blank" rel="noopener">Telegram</a>
-          <a class="btn btn-ghost" href="https://max.ru/u/f9LHodD0cOLIwiheCdFDbjaxdYxhU8Cjadlrx8kAEqhD3eS6GcQB7OzZ1tY" target="_blank" rel="noopener">MAX</a>
+          <a class="btn btn-ghost" href="https://t.me/+79689682744">Telegram</a>
+          <a class="btn btn-ghost" href="https://max.ru/u/f9LHodD0cOLIwiheCdFDbjaxdYxhU8Cjadlrx8kAEqhD3eS6GcQB7OzZ1tY">MAX</a>
         </div>
       </div>
       <div class="contact-list">
-        <div><small>Адрес</small><a href="https://yandex.ru/maps/org/202014402815/" target="_blank" rel="noopener">Москва, ул. Недорубова, 28</a></div>
+        <div><small>Адрес</small><a href="https://yandex.ru/maps/org/202014402815/">Москва, ул. Недорубова, 28</a></div>
         <div><small>Часы работы</small><span>Ежедневно 9:00–21:00</span></div>
         <div><small>Телефон</small><a href="tel:+79689682744">+7 968 968-27-44</a></div>
         <div><small>Почта</small><a href="mailto:teplitsa.moscow@mail.ru">teplitsa.moscow@mail.ru</a></div>
@@ -343,13 +356,25 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <footer>
   <div class="wrap">
     <span>© Теплица — цветочная студия, Москва</span>
-    <a href="https://teplica.posiflora.com/teplitsa_moscow/agreement" target="_blank" rel="noopener">Согласие на обработку персональных данных</a>
+    <a href="https://teplica.posiflora.com/teplitsa_moscow/agreement">Согласие на обработку персональных данных</a>
   </div>
 </footer>
 
+<dialog class="order" id="order" aria-labelledby="order-title">
+  <button class="x" type="button" aria-label="Закрыть" data-close>×</button>
+  <div class="top"><img id="order-img" alt=""><div><h3 id="order-title"></h3><div class="p" id="order-price"></div></div></div>
+  <div class="opts">
+    <a class="btn btn-primary" id="order-site" href="#">Оформить и оплатить на сайте</a>
+    <a class="btn btn-ghost" id="order-tg" href="https://t.me/+79689682744">Заказать в Telegram</a>
+    <a class="btn btn-ghost" href="tel:+79689682744">Позвонить: +7 968 968-27-44</a>
+  </div>
+  <p class="hint" style="padding-bottom:20px">Если страница оформления открылась пустой — обновите её или закажите в Telegram: название букета скопируется автоматически.</p>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+
 <div class="bar">
   <a class="btn btn-ghost" href="tel:+79689682744">Позвонить</a>
-  <a class="btn btn-ghost" href="https://t.me/+79689682744" target="_blank" rel="noopener">Telegram</a>
+  <a class="btn btn-ghost" href="https://t.me/+79689682744">Telegram</a>
   <a class="btn btn-primary" href="#catalog">Букеты</a>
 </div>
 
@@ -373,14 +398,36 @@ function render(){
   buttons(document.getElementById("prices"), PRICES, "price");
   const list = ITEMS.filter(i => i.c===state.cat && inPrice(i.p, state.price));
   document.getElementById("grid").innerHTML = list.length ? list.map(i => `
-    <a class="card" href="${CATALOG}/card/${i.id}?type=${i.ty}" target="_blank" rel="noopener">
+    <a class="card" data-i="${ITEMS.indexOf(i)}" href="${CATALOG}/card/${i.id}?type=${i.ty}">
       <div class="ph">${i.ph.map(p => `<img loading="lazy" src="${IMG(p)}" alt="${esc(i.t)}">`).join("")}</div>
-      <div class="body"><h3>${esc(i.t)}</h3><div class="row"><span class="price">${i.f?"от ":""}${fmt(i.p)}</span><span class="go">Заказать →</span></div></div>
+      <div class="body"><h3>${esc(i.t)}</h3><span class="price">${i.f?"от ":""}${fmt(i.p)}</span><span class="go">Заказать</span></div>
     </a>`).join("") : `<p class="empty">В этой категории нет букетов в выбранном диапазоне цен — попробуйте другой фильтр или напишите нам в Telegram.</p>`;
   const act = document.querySelector("#tabs [aria-pressed=true]"); const t = act.parentElement; t.scrollLeft = act.offsetLeft - t.offsetLeft - 20;
 }
 document.querySelectorAll("[data-jump]").forEach(a => a.addEventListener("click", () => { state.cat = a.dataset.jump; state.price = "all"; render(); }));
 render();
+const dlg = document.getElementById("order");
+function toast(msg){ const t = document.getElementById("toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("on"), 3500); }
+document.getElementById("grid").addEventListener("click", e => {
+  const a = e.target.closest(".card"); if (!a || !dlg.showModal) return;
+  e.preventDefault();
+  const i = ITEMS[+a.dataset.i];
+  document.getElementById("order-img").src = IMG(i.ph[0]);
+  document.getElementById("order-title").textContent = i.t;
+  document.getElementById("order-price").textContent = (i.f ? "от " : "") + fmt(i.p);
+  document.getElementById("order-site").href = a.href;
+  dlg.dataset.msg = `Здравствуйте! Хочу заказать: ${i.t} (${(i.f ? "от " : "") + fmt(i.p)})`;
+  dlg.showModal();
+});
+document.getElementById("order-tg").addEventListener("click", e => {
+  const href = e.currentTarget.href;
+  if (!navigator.clipboard) return;
+  e.preventDefault();
+  const go = () => { location.href = href; };
+  const wait = new Promise(r => setTimeout(r, 1200));
+  Promise.race([navigator.clipboard.writeText(dlg.dataset.msg).then(() => { toast("Текст заказа скопирован — вставьте его в чат"); return new Promise(r => setTimeout(r, 900)); }), wait]).catch(() => {}).then(go);
+});
+dlg.addEventListener("click", e => { if (e.target === dlg || e.target.hasAttribute("data-close")) dlg.close(); });
 </script>
 </body>
 </html>
