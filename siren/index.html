@@ -165,9 +165,9 @@ section{padding:clamp(64px,9vw,120px) 0;scroll-margin-top:70px}
     <p class="lead">Собираем букеты из сезонных цветов в спокойных оттенках. Привозим за 2 часа и присылаем фото перед отправкой.</p>
     <div class="hero-cta"><a class="btn" href="#catalog">Выбрать букет</a><a class="btn ghost" href="#sub">Цветочная подписка</a></div>
     <div class="arches">
-      <div class="tag"><div class="arch s ph-bg" data-bg="hero1"></div><span>Пионы · сезон</span></div>
-      <div class="tag"><div class="arch ph-bg" data-bg="hero2"></div><span>Букет недели</span></div>
-      <div class="tag"><div class="arch s ph-bg" data-bg="hero3"></div><span>Ранункулюсы</span></div>
+      <div class="tag"><div class="arch s ph-bg" data-bg="hero1"></div><span>Пионы</span></div>
+      <div class="tag"><div class="arch ph-bg" data-bg="hero2"></div><span>Маки · букет недели</span></div>
+      <div class="tag"><div class="arch s ph-bg" data-bg="hero3"></div><span>Белые розы</span></div>
     </div>
     <div class="perks">
       <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Доставка за 2 часа</b><span>По Москве, каждый день 9:00–21:00</span></div></div>
@@ -190,7 +190,7 @@ section{padding:clamp(64px,9vw,120px) 0;scroll-margin-top:70px}
     <div class="sub">
       <div class="center"><span class="eyebrow">Подписка</span><h2 style="margin-top:12px">Свежие цветы дома — <em class="s">без забот</em></h2><p class="lead">Привозим новый сезонный букет в выбранный день. Пауза или отмена — в любой момент одним сообщением.</p></div>
       <div class="plans">
-        <div class="plan"><h3>Раз в месяц</h3><div class="price">3 900 ₽ <small class="muted">/ букет</small></div><ul><li>4 букета в год по сезону</li><li>Доставка бесплатно</li><li>Открытка с подписью</li></ul><button class="btn" type="button" data-item="sub-month">Оформить</button></div>
+        <div class="plan"><h3>Раз в месяц</h3><div class="price">3 900 ₽ <small class="muted">/ букет</small></div><ul><li>12 букетов в год, по сезону</li><li>Доставка бесплатно</li><li>Открытка с подписью</li></ul><button class="btn" type="button" data-item="sub-month">Оформить</button></div>
         <div class="plan best"><h3>Раз в неделю</h3><div class="price">3 200 ₽ <small class="muted">/ букет</small></div><ul><li>Самая выгодная цена</li><li>Доставка бесплатно</li><li>Ваза в подарок с первым букетом</li></ul><button class="btn" type="button" data-item="sub-week">Оформить</button></div>
         <div class="plan"><h3>Раз в две недели</h3><div class="price">3 500 ₽ <small class="muted">/ букет</small></div><ul><li>2 букета в месяц</li><li>Доставка бесплатно</li><li>Можно менять оттенки</li></ul><button class="btn" type="button" data-item="sub-2week">Оформить</button></div>
       </div>
@@ -228,7 +228,7 @@ section{padding:clamp(64px,9vw,120px) 0;scroll-margin-top:70px}
     <div><div class="logo">сирень <i>&amp;</i> соль</div><p style="margin-top:12px;color:#a49c90;max-width:340px">Цветочная мастерская. Букеты из сезонных цветов и цветочная подписка.</p></div>
     <div><h4>Контакты</h4><a href="tel:+79000000000">+7 900 000-00-00</a><a href="mailto:hello@example.com">hello@example.com</a><span style="color:#a49c90">Ежедневно 9:00–21:00</span></div>
     <div><h4>Покупателям</h4><a href="#catalog">Каталог</a><a href="#sub">Подписка</a><a href="#faq">Доставка и оплата</a></div>
-    <p class="note">Шаблон сайта. Название, контакты, цены и условия вымышлены. <span id="credits"></span></p>
+    <div class="note">Шаблон сайта. Название, контакты, цены и условия вымышлены. <div id="credits" style="margin-top:10px"></div></div>
   </div>
 </footer>
 
@@ -243,13 +243,13 @@ window.SHOP = {
   zones: [{ v: 450, l: "В пределах МКАД", s: "450 ₽", t: "Доставка в пределах МКАД" }, { v: 750, l: "За МКАД до 10 км", s: "750 ₽", t: "Доставка за МКАД" }],
   pickup: "Самовывоз из мастерской", pickupShort: "из мастерской",
   notes: ["<b>Доставка:</b> в пределах МКАД — 450 ₽, за МКАД — 750 ₽", "<b>Фото букета</b> пришлём перед отправкой", "<b>Открытка</b> с вашим текстом — бесплатно"],
-  img: (p, w) => p ? `${p}${p.includes("?") ? "&" : "?"}w=${w}&q=75&auto=format&fit=crop` : PLACEHOLDER
+  img: (p, w) => p || PLACEHOLDER
 };
 </script>
 <script src="../shared/shop.js"></script>
 <script>
 const { esc, price, IMG } = SHOP_UTIL;
-const CATS = [["all", "Все"], ["author", "Авторские"], ["mono", "Монобукеты"], ["box", "В коробке"], ["mini", "До 3 000 ₽"]];
+const CATS = [["all", "Все"], ["author", "Авторские"], ["mono", "Монобукеты"], ["box", "В вазе"], ["mini", "До 3 000 ₽"]];
 let cat = "all";
 function render(){
   document.getElementById("chips").innerHTML = CATS.map(([k, l]) => `<button class="chip" type="button" data-k="${k}" aria-pressed="${cat === k}">${l}</button>`).join("");
@@ -264,7 +264,7 @@ function render(){
 document.getElementById("chips").addEventListener("click", e => { const b = e.target.closest("[data-k]"); if (b) { cat = b.dataset.k; render(); } });
 render();
 document.querySelectorAll("[data-bg]").forEach(el => { const p = (window.DECOR || {})[el.dataset.bg]; if (p) el.style.backgroundImage = `url("${IMG(p, el.offsetWidth > 400 ? 900 : 600)}")`; });
-if (window.CREDITS && CREDITS.length) document.getElementById("credits").textContent = "Фото: " + CREDITS.join(", ") + " / Unsplash.";
+if (window.CREDITS && CREDITS.length) document.getElementById("credits").innerHTML = `<details><summary style="cursor:pointer">Авторы фото (Wikimedia Commons)</summary><p style="margin-top:8px;line-height:1.7">${CREDITS.map(c => `<a href="${c.u}" target="_blank" rel="noopener" style="display:inline;color:#cfc8bd;text-decoration:underline">${esc(c.a)}</a> (${esc(c.l)})`).join(", ")}</p></details>`;
 </script>
 </body>
 </html>
