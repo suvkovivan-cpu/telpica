@@ -45,7 +45,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--paper);color:var(--ink);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+body{background:var(--paper) url("img/decor/pattern-cream.svg");color:var(--ink);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
@@ -95,7 +95,9 @@ section{scroll-margin-top:64px}
 
 /* hero */
 .hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);min-height:calc(100svh - 64px - 33px);border-bottom:1px solid var(--line)}
-.hero-l{padding:clamp(40px,7vw,96px) var(--gut) 40px;display:flex;flex-direction:column;justify-content:space-between;gap:48px}
+.hero-l{position:relative;isolation:isolate;overflow:hidden;padding:clamp(40px,7vw,96px) var(--gut) 40px;display:flex;flex-direction:column;justify-content:space-between;gap:48px}
+.hero-l::before{content:"";position:absolute;z-index:-1;right:0;bottom:0;width:min(46%,380px);aspect-ratio:520/640;background:url("img/decor/branch-green.svg") bottom right/contain no-repeat;opacity:.55;pointer-events:none}
+@media(max-width:960px){.hero-l::before{width:58%;opacity:.35}}
 .hero h1{font-size:clamp(64px,10.4vw,172px)}
 .hero h1 em{color:var(--accent)}
 .hero-sub{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end}
@@ -124,7 +126,7 @@ section{scroll-margin-top:64px}
 @media(max-width:760px){.sh{grid-template-columns:1fr;gap:14px}.sh .label{padding:0}}
 
 /* mother's day */
-.mom{background:var(--blush)}
+.mom{background:var(--blush) url("img/decor/pattern-blush.svg")}
 .mom .sh{grid-template-columns:200px 1fr auto}
 .mom-date{font-family:var(--serif);font-size:clamp(46px,6.4vw,104px);line-height:.98;color:var(--berry);font-style:italic;font-weight:500}
 .mom-lead{max-width:520px;color:#6b4a52;margin-top:18px;font-size:17px}
@@ -229,11 +231,13 @@ section{scroll-margin-top:64px}
 @media(max-width:760px){.rev{grid-template-columns:1fr}.qs{grid-template-columns:1fr;gap:28px;margin-top:40px}}
 
 /* contacts */
-.ct{background:var(--forest);color:var(--paper);margin-top:clamp(64px,9vw,128px)}
+.ct{position:relative;isolation:isolate;overflow:hidden;background:var(--forest) url("img/decor/pattern-forest.svg");color:var(--paper);margin-top:clamp(64px,9vw,128px)}
 .ct .w{padding-top:clamp(64px,8vw,112px);padding-bottom:clamp(48px,6vw,80px)}
 .ct .label{color:#9fbfa9}
 .addr{font-family:var(--serif);font-size:clamp(52px,8.6vw,148px);line-height:.95;margin:18px 0 48px}
 .addr em{color:#f5b8c8}
+.ct::after{content:"";position:absolute;z-index:-1;right:2%;bottom:-4%;width:min(38%,460px);aspect-ratio:520/640;background:url("img/decor/branch-pink.svg") bottom right/contain no-repeat;opacity:.7;pointer-events:none}
+@media(max-width:760px){.ct::after{width:70%;opacity:.35}}
 .ct-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:1px solid rgba(243,239,231,.18);padding-top:28px}
 .ct-grid small{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9fbfa9;margin-bottom:10px}
 .ct-grid a,.ct-grid span{font-size:18px;display:block;line-height:1.5}
@@ -241,7 +245,7 @@ section{scroll-margin-top:64px}
 .ct .btn:hover{background:#fff}
 @media(max-width:860px){.ct-grid{grid-template-columns:1fr 1fr;row-gap:28px}}
 @media(max-width:480px){.ct-grid{grid-template-columns:1fr}}
-.ft{background:var(--forest);color:#a29d90;font-size:13px;overflow:hidden}
+.ft{background:var(--forest) url("img/decor/pattern-forest.svg");color:#a29d90;font-size:13px;overflow:hidden}
 .ft .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:20px;padding-bottom:20px;border-top:1px solid rgba(243,239,231,.18)}
 .wordmark{font-family:var(--serif);font-weight:600;color:var(--paper);font-size:29vw;line-height:.72;letter-spacing:-.03em;text-align:center;padding-top:2vw;white-space:nowrap;user-select:none;overflow:hidden}
 
