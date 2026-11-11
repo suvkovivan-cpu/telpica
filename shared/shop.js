@@ -1,7 +1,8 @@
 /* Общий модуль магазина: карточка товара, корзина, оформление заказа, отправка в Telegram.
    Сайт задаёт window.SHOP (настройки) и window.ITEMS (каталог) до подключения этого файла.
 
-   ITEMS: [{ id, c, t, p, ph:[фото], d:"описание", v:[{l:"размер", p:цена}] }]
+   ITEMS: [{ id, c, t, p, ph:[фото], d:"описание", s:["состав"], h:"размер", care:["уход"],
+            v:[{l:"вариант", p:цена, h:"размер варианта"}] }]
    SHOP: {
      key, name, phone, phoneHref, telegram, email,
      endpoint,                      // адрес функции для заказов в Telegram ("" — ручная отправка)
@@ -9,6 +10,7 @@
      pickup: "Самовывоз, адрес",     // текст в заказе
      pickupShort: "ул. Садовая, 1",
      notes: ["<b>Доставка:</b> ..."],
+     care: ["совет по уходу"],     // общие советы по уходу (у товара можно задать свои)
      img: (ph, w) => url            // как получить адрес картинки нужной ширины
    } */
 (function () {
@@ -29,12 +31,13 @@
     <div class="pd-info">
       <h3 id="pd-title"></h3>
       <div class="pd-price" id="pd-price"></div>
-      <div class="pd-desc" id="pd-desc"></div>
       <fieldset class="vars" id="pd-vars"></fieldset>
       <div class="pd-buy">
         <div class="qty"><button type="button" data-q="-1" aria-label="Меньше">−</button><output id="pd-q">1</output><button type="button" data-q="1" aria-label="Больше">+</button></div>
         <button class="sbtn" type="button" id="pd-add">В корзину</button>
       </div>
+      <div class="pd-desc" id="pd-desc"></div>
+      <div class="pd-spec" id="pd-spec"></div>
       <ul class="pd-notes">${S.notes.map(n => `<li>${n}</li>`).join("")}</ul>
       <p class="pd-alt">Вопрос по букету? <a href="${S.telegram}">Напишите флористу</a> или <a href="${S.phoneHref}">позвоните</a>.</p>
     </div>
@@ -129,11 +132,17 @@
     $("pd-desc").innerHTML = i.d ? i.d.split("\n").filter(Boolean).map(p => `<p>${esc(p)}</p>`).join("") : "";
     $("pd-vars").innerHTML = i.v ? `<legend>Размер</legend>` + i.v.map((v, k) => `<label class="var"><span><input type="radio" name="pv" value="${k}" ${k ? "" : "checked"}>${esc(v.l)}</span><span>${fmt(v.p)}</span></label>`).join("") : "";
     $("pd-vars").classList.toggle("hide", !i.v);
+    const care = i.care || S.care;
+    $("pd-spec").innerHTML =
+      (i.s ? `<div class="spec"><b>Состав</b><ul>${i.s.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>` : "") +
+      `<div class="spec hide" id="pd-size-w"><b>Высота × ширина</b><span id="pd-size"></span></div>` +
+      (care ? `<details class="spec care"><summary>Как ухаживать</summary><ul>${care.map(x => `<li>${esc(x)}</li>`).join("")}</ul></details>` : "");
     updPd();
     if (!pd.open) pd.showModal();
     try { history.replaceState(null, "", "#p-" + i.id); } catch (_) {}
   }
-  function updPd() { const p = cur.v ? cur.v[curV].p : cur.p; $("pd-price").textContent = fmt(p * curQ); $("pd-q").textContent = curQ; }
+  function updPd() { const p = cur.v ? cur.v[curV].p : cur.p; $("pd-price").textContent = fmt(p * curQ); $("pd-q").textContent = curQ;
+    const sz = cur.v ? cur.v[curV].h : cur.h; const w = $("pd-size-w"); if (w) { w.classList.toggle("hide", !sz); $("pd-size").textContent = sz || ""; } }
   $("pd-vars").addEventListener("change", e => { curV = +e.target.value; updPd(); });
   pd.querySelector(".pd-buy .qty").addEventListener("click", e => { const b = e.target.closest("[data-q]"); if (!b) return; curQ = Math.max(1, Math.min(20, curQ + +b.dataset.q)); updPd(); });
   $("thumbs").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; const g = $("gal"); g.scrollTo({ left: g.clientWidth * +b.dataset.k, behavior: "smooth" }); });
